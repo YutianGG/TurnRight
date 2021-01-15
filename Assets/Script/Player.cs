@@ -29,7 +29,7 @@ public class Player : MonoBehaviour
 
     public void Start()
     {
-        offset.x = gameObject.transform.position.x -;
+        offset.x = gameObject.transform.position.x ;
     }
     public void Update()
     {
