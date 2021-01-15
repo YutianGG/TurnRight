@@ -12,29 +12,48 @@ public class Player : MonoBehaviour
     public Vector2 radius;
     [Header("判斷器位置")]
     public Vector3 offset;
+    public float roset;  
+    [Header("上個位置紀錄")]
+    public Vector3 reset;
+    public float reroset;
+    [Header("錯誤音效")]
+    public AudioClip soundWrong;
 
-    private bool up;
-    private bool down;
-    private bool right;
-    private bool left;
+    private AudioSource aud;
 
+    [Header("方向判斷")]
+    private bool click;
+
+    [Header("觸控位置紀錄")]
     public float x;
     public float y;
     private float x1;
     private float y1;
     private float x2;
     private float y2;
-    private Vector3 velocity = Vector3.zero;
 
+    private int i = 0;
 
+    private void Awake()
+    {
+        aud = GetComponent<AudioSource>();
+    }
     public void Start()
     {
-        offset.x = gameObject.transform.position.x ;
+        
+        offset.x = gameObject.transform.position.x;
+        offset.y = gameObject.transform.position.y;
+        offset.z = gameObject.transform.position.z;
+        reset = offset;
+   
+        roset = gameObject.transform.rotation.x;
+        reroset = roset;
     }
     public void Update()
     {
         Touch();
-        Up();
+        Click();
+        Move();
     }
 
     /// <summary>
@@ -67,17 +86,19 @@ public class Player : MonoBehaviour
     {
         if (x == 0 && y == 0) // 原點
         {
-            Click();
+            click = true;
         }
         else if (x > 0 && y > 0) //第一象限
         {
             if (x > y)
             {
-                Right();
+                reset = offset;
+                offset.x += 0.8f;
             }
             else
             {
-                up = true;
+                reset = offset;
+                offset.y += 0.8f;
             }
         }
         else if (x < 0 && y > 0) //第二象限
@@ -85,22 +106,26 @@ public class Player : MonoBehaviour
             x = x * -1;
             if (x > y)
             {
-                Left();
+                reset = offset;
+                offset.x -= 0.8f;
             }
             else
             {
-                up = true;
+                reset = offset;
+                offset.y += 0.8f;
             }
         }
         else if (x < 0 && y < 0) //第三象限
         {
             if (x > y)
             {
-                Down();
+                reset = offset;
+                offset.y -= 0.8f;
             }
             else
             {
-                Left();
+                reset = offset;
+                offset.x -= 0.8f;
             }
         }
         else if (x > 0 && y < 0) //第四象限
@@ -108,11 +133,13 @@ public class Player : MonoBehaviour
             y = y * -1;
             if (x > y)
             {
-                Right();
+                reset = offset;
+                offset.x += 0.8f;
             }
             else
             {
-                Down();
+                reset = offset;
+                offset.y -= 0.8f;
             }
         }
         
@@ -123,44 +150,46 @@ public class Player : MonoBehaviour
     /// </summary>
     public void Click()
     {
-        for(int i = 1; i<= 90; i++)
+        if(click == true && i != 45)
         {
-            transform.Rotate(0, 0, -1);
-            
+            transform.Rotate(0, 0, -2);
+            i++;
+        }
+        else
+        {
+            click = false;
+            i = 0;
         }
         
     }
-    public void Up()
+    public void Move()
     {
-        if (up == true)
-        {
-            offset.y += 0.8f;
-            transform.position = Vector3.SmoothDamp(transform.position, offset, ref velocity, 0.5f);
-            
-        }
-        
-           
-    }
-    public void Down()
-    {
-        print("d");
-    }
-    public void Right()
-    {
-        print("r");
-    }
-    public void Left()
-    {
-        print("l");
+        transform.position = Vector3.Lerp(transform.position, offset, 0.5f);
     }
 
-    private void OnDrawGizmos()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-       
-        // 圖示 顏色
-        Gizmos.color = new Color(1, 0, 0, 0.5f);
-        // 圖示 繪製球體(中心點，半徑)
-        Gizmos.DrawCube(offset, radius);
+        if(collision.name == "Wall")
+        {
+            if(click == true)
+            {
+                transform.Rotate(0, 0, 2*i);
+                click = false;
+                i = 0;
+                
+            }
+            //aud.PlayOneShot(soundWrong);
+            else offset = reset;
+
+        }
+        
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if(collision.name == "Win")
+        {
+            
+        }
     }
 
 }
