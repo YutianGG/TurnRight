@@ -16,29 +16,22 @@ public class UIicon : MonoBehaviour
     public Button Information;
 
     public GameObject set;
-
-    private void Awake()
+    private void Start()
     {
-        // 取得按鈕
-
-        Information = GameObject.Find("Information").GetComponent<Button>();
-        Continue = GameObject.Find("Continue").GetComponent<Button>();
-        Setting = GameObject.Find("Setting").GetComponent<Button>();
-        Return = GameObject.Find("Return").GetComponent<Button>();
-        Share = GameObject.Find("Share").GetComponent<Button>();
-        Skin = GameObject.Find("Skin").GetComponent<Button>();
-        Home = GameObject.Find("Home").GetComponent<Button>();
-        Play = GameObject.Find("Play").GetComponent<Button>();
+       
+    }
+    private void Update()
+    {
         SetButton();
     }
     private void SetButton()
     {
-        //讀取按鈕
+       
         Play.onClick.AddListener(PLAY);
-        Home.onClick.AddListener(HOME);
+       /* Home.onClick.AddListener(HOME);
         Skin.onClick.AddListener(SKIN);
         Share.onClick.AddListener(SHARE);
-        Setting.onClick.AddListener(SETTING);
+        Setting.onClick.AddListener(SETTING);*/
     }
     private void PLAY()
     {

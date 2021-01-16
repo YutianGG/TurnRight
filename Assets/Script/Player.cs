@@ -56,6 +56,7 @@ public class Player : MonoBehaviour
         Touch();
         Click();
         Move();
+        Win();
     }
 
     /// <summary>
@@ -181,7 +182,16 @@ public class Player : MonoBehaviour
     {
         transform.position = Vector3.Lerp(transform.position, offset, 0.5f);
     }
-
+    /// <summary>
+    /// 通關判斷
+    /// </summary>
+    private void Win()
+    {
+        if(w == 2)
+        {
+            Invoke("Winer", 0.5f);
+        }
+    }
     private void Winer()
     {
         gg.GameWIN();
@@ -191,8 +201,10 @@ public class Player : MonoBehaviour
     /// 進入區域判斷
     /// </summary>
     /// <param name="collision"></param>
+    private static int w = 0;
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        
         if (collision.name == "Wall")
         {
             if (click == true)
@@ -208,12 +220,26 @@ public class Player : MonoBehaviour
                 gg.move--;
             }
         }
-        if (collision.name == "Win")
+        if (collision.name == "Win1")
         {
-                Invoke("Winer", 0.5f);
-        }
+            
+
+
+         }
+        
 
     }
-    
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if(collision.name == "Win1")
+        {
+            w--;
+        }
+        if(collision.name == "Win2")
+        {
+            w--;
+        }
+    }
+
 
 }
