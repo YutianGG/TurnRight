@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
     [Header("錯誤音效")]
     public AudioClip soundWrong;
 
+    private GameManager gg;
     private AudioSource aud;
 
     [Header("方向判斷")]
@@ -37,6 +38,7 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         aud = GetComponent<AudioSource>();
+        gg = FindObjectOfType<GameManager>();
     }
     public void Start()
     {
@@ -75,6 +77,7 @@ public class Player : MonoBehaviour
             x = x2 - x1;
             y = y2 - y1;
             TouchJunge(); //判斷觸控方向
+            
         }
 
     }
@@ -94,25 +97,28 @@ public class Player : MonoBehaviour
             {
                 reset = offset;
                 offset.x += 0.8f;
+                gg.Walk();
             }
             else
             {
                 reset = offset;
                 offset.y += 0.8f;
-            }
+                gg.Walk();            }
         }
         else if (x < 0 && y > 0) //第二象限
         {
             x = x * -1;
             if (x > y)
-            {
+            {           
                 reset = offset;
                 offset.x -= 0.8f;
+                gg.Walk();
             }
             else
             {
                 reset = offset;
                 offset.y += 0.8f;
+                gg.Walk();
             }
         }
         else if (x < 0 && y < 0) //第三象限
@@ -121,11 +127,13 @@ public class Player : MonoBehaviour
             {
                 reset = offset;
                 offset.y -= 0.8f;
+                gg.Walk();
             }
             else
             {
                 reset = offset;
                 offset.x -= 0.8f;
+                gg.Walk();
             }
         }
         else if (x > 0 && y < 0) //第四象限
@@ -135,11 +143,13 @@ public class Player : MonoBehaviour
             {
                 reset = offset;
                 offset.x += 0.8f;
+                gg.Walk();
             }
             else
             {
                 reset = offset;
                 offset.y -= 0.8f;
+                gg.Walk();
             }
         }
         
@@ -150,10 +160,15 @@ public class Player : MonoBehaviour
     /// </summary>
     public void Click()
     {
-        if(click == true && i != 45)
+        if(click == true && i != 30)
         {
-            transform.Rotate(0, 0, -2);
+            transform.Rotate(0, 0, -3);
             i++;
+        }
+        else if(click == true)
+        {
+            gg.Walk();
+            click = false;
         }
         else
         {
@@ -167,29 +182,38 @@ public class Player : MonoBehaviour
         transform.position = Vector3.Lerp(transform.position, offset, 0.5f);
     }
 
+    private void Winer()
+    {
+        gg.GameWIN();
+        enabled = false;
+    }
+    /// <summary>
+    /// 進入區域判斷
+    /// </summary>
+    /// <param name="collision"></param>
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.name == "Wall")
+        if (collision.name == "Wall")
         {
-            if(click == true)
+            if (click == true)
             {
-                transform.Rotate(0, 0, 2*i);
+                transform.Rotate(0, 0, 3 * i);
                 click = false;
                 i = 0;
-                
+                aud.PlayOneShot(soundWrong);
             }
-            //aud.PlayOneShot(soundWrong);
-            else offset = reset;
-
+            else
+            {
+                offset = reset;
+                gg.move--;
+            }
         }
-        
-    }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if(collision.name == "Win")
+        if (collision.name == "Win")
         {
-            
+                Invoke("Winer", 0.5f);
         }
+
     }
+    
 
 }

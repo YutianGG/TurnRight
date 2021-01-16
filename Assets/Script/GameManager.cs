@@ -1,18 +1,76 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using UnityEngine.UI;
 using UnityEngine;
+
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [Header("移動步數")]
+    public int move;
+    [Header("星星數量")]
+    public GameObject[] stars;
+    public GameObject[] winstar;
+    [Header("減星步數")]
+    public int[] nostar;
+    [Header("移動文字")]
+    public Text MoveText;
+    [Header("勝利介面")]
+    public GameObject win;
+    
+
+
+    public static int star = 3;
+
+    private void Start()
+    {
+        move = 0;
+    }
+    private void Update()
     {
         
+        SetStar();
+        WalkText();
+    }
+    /// <summary>
+    /// 減少移動步數
+    /// </summary>
+    public void Walk()
+    {
+        move++;
+    }
+    /// <summary>
+    /// 星星顯示數量
+    /// </summary>
+    private void SetStar()
+    {
+        for (int i = 0; i < stars.Length; i++)
+        {
+            if (nostar[i] < move)
+            {
+                stars[i].SetActive(false);
+                winstar[i].SetActive(false);
+                star = i;
+            }
+           
+                
+        }
+        
+    }
+    /// <summary>
+    /// 移動步數顯示
+    /// </summary>
+    private void WalkText()
+    {
+        MoveText.text = move.ToString();
+    }
+    /// <summary>
+    /// 遊戲過關紀錄星星
+    /// </summary>
+    public void GameWIN()
+    {
+        win.SetActive(true);
+        PlayerPrefs.SetInt("Star", star);
+        PlayerPrefs.SetInt("Level", 1);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+ 
 }
