@@ -14,40 +14,45 @@ public class UIicon : MonoBehaviour
     public Button Skin;
     public Button Continue;
     public Button Information;
-
     public GameObject set;
+
+    private Black BL;
+    public GameObject black;
     private void Start()
-    {
-       
-    }
-    private void Update()
     {
         SetButton();
     }
+
     private void SetButton()
     {
        
         Play.onClick.AddListener(PLAY);
-       /* Home.onClick.AddListener(HOME);
+        Home.onClick.AddListener(HOME);
         Skin.onClick.AddListener(SKIN);
         Share.onClick.AddListener(SHARE);
-        Setting.onClick.AddListener(SETTING);*/
+        Setting.onClick.AddListener(SETTING);
+
+    }
+    private void Shot()
+    {
+        black.SetActive(false);
     }
     private void PLAY()
     {
-        print("go");
+      
+        SceneManager.LoadScene("LEVEL");
     }
     private void HOME()
     {
-        
+        SceneManager.LoadScene("HOME");
     }
     private void SKIN()
     {
-
+        SceneManager.LoadScene("Skin");
     }
     private void SHARE()
     {
-
+        
     }
     private void RETURN()
     {
@@ -59,7 +64,7 @@ public class UIicon : MonoBehaviour
     }
     private void CONTINUE()
     {
-
+        set.SetActive(false);
     }
     private void INFORNATION()
     {

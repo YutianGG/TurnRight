@@ -6,13 +6,11 @@ public class MenuManager : MonoBehaviour
 {
     private void Start()
     {
-        PlayerPrefs.GetInt("Level");
-        PlayerPrefs.GetInt("Star");
+        
     }
     private void Update()
     {
-        SetStar();
-        SetLevel();
+        
     }
 
     private void SetStar()

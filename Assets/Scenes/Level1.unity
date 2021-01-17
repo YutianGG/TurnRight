@@ -1096,9 +1096,9 @@ MonoBehaviour:
   - {fileID: 382293751}
   - {fileID: 492391876}
   winstar:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 8315442514549721092}
+  - {fileID: 8315442513947645370}
+  - {fileID: 8315442514204927923}
   nostar: 080000000a0000000f000000
   MoveText: {fileID: 1634211731}
   win: {fileID: 8315442514337819141}
@@ -1470,7 +1470,7 @@ GameObject:
   - component: {fileID: 1363112405}
   - component: {fileID: 1363112407}
   m_Layer: 0
-  m_Name: Win1
+  m_Name: Win
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2242,7 +2242,7 @@ GameObject:
   - component: {fileID: 1763071366}
   - component: {fileID: 1763071365}
   m_Layer: 0
-  m_Name: Win2
+  m_Name: Win
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2705,6 +2705,8 @@ MonoBehaviour:
   soundWrong: {fileID: 8300000, guid: 228646d4dc1f11c4792ecd311b2e3dee, type: 3}
   x: 0
   y: 0
+  roro: 0
+  clears: 2
 --- !u!50 &1930467622
 Rigidbody2D:
   serializedVersion: 4
@@ -3786,6 +3788,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4410886902882719146, guid: 66efa77c585e0ff468d60e99e85e88d7,
         type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4410886902882719146, guid: 66efa77c585e0ff468d60e99e85e88d7,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -3801,6 +3808,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4410886902882719146, guid: 66efa77c585e0ff468d60e99e85e88d7,
         type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4410886902882719146, guid: 66efa77c585e0ff468d60e99e85e88d7,
+        type: 3}
       propertyPath: m_LocalRotation.x
       value: -0.7071068
       objectReference: {fileID: 0}
@@ -3813,16 +3825,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4410886902882719146, guid: 66efa77c585e0ff468d60e99e85e88d7,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 4410886902882719146, guid: 66efa77c585e0ff468d60e99e85e88d7,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4410886902882719146, guid: 66efa77c585e0ff468d60e99e85e88d7,
         type: 3}

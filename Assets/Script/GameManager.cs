@@ -17,9 +17,8 @@ public class GameManager : MonoBehaviour
     public GameObject win;
     
 
-
     public static int star = 3;
-
+    
     private void Start()
     {
         move = 0;

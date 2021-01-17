@@ -33,6 +33,11 @@ public class Player : MonoBehaviour
     private float x2;
     private float y2;
 
+    [Header("角度判斷")]
+    public float roro=0;
+    [Header("終點數量")]
+    public int clears;
+
     private int i = 0;
 
     private void Awake()
@@ -165,6 +170,7 @@ public class Player : MonoBehaviour
         {
             transform.Rotate(0, 0, -3);
             i++;
+            roro++;
         }
         else if(click == true)
         {
@@ -181,19 +187,21 @@ public class Player : MonoBehaviour
     public void Move()
     {
         transform.position = Vector3.Lerp(transform.position, offset, 0.5f);
+
     }
     /// <summary>
     /// 通關判斷
     /// </summary>
     private void Win()
     {
-        if(w == 2)
+        if(w == clears && roro % 30 == 0)
         {
             Invoke("Winer", 0.5f);
         }
     }
     private void Winer()
     {
+        
         gg.GameWIN();
         enabled = false;
     }
@@ -211,6 +219,7 @@ public class Player : MonoBehaviour
             {
                 transform.Rotate(0, 0, 3 * i);
                 click = false;
+                roro = roro - i;
                 i = 0;
                 aud.PlayOneShot(soundWrong);
             }
@@ -220,25 +229,20 @@ public class Player : MonoBehaviour
                 gg.move--;
             }
         }
-        if (collision.name == "Win1")
+        if(collision.name == "Win")
         {
+            w++;
             
-
-
-         }
-        
+        }        
 
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if(collision.name == "Win1")
+        if(collision.name == "Win")
         {
             w--;
         }
-        if(collision.name == "Win2")
-        {
-            w--;
-        }
+        
     }
 
 
