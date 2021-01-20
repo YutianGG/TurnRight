@@ -64,10 +64,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Script\Black.cs" />
+    <Compile Include="Assets\Script\ButtonManager.cs" />
     <Compile Include="Assets\Script\GameManager.cs" />
-    <Compile Include="Assets\Script\MenuManager.cs" />
+    <Compile Include="Assets\Script\Level.cs" />
     <Compile Include="Assets\Script\Player.cs" />
-    <Compile Include="Assets\Script\UIicon.cs" />
     <Reference Include="UnityEngine">
       <HintPath>D:/UnityHub/2019.4.18f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
