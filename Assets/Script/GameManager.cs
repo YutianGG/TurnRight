@@ -1,5 +1,6 @@
 ﻿using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 public class GameManager : MonoBehaviour
@@ -15,6 +16,8 @@ public class GameManager : MonoBehaviour
     public Text MoveText;
     [Header("勝利介面")]
     public GameObject win;
+    [Header("玩家物件")]
+    public GameObject play;
     
 
     public static int star = 3;
@@ -67,9 +70,16 @@ public class GameManager : MonoBehaviour
     public void GameWIN()
     {
         win.SetActive(true);
-        PlayerPrefs.SetInt("Star", star);
-        PlayerPrefs.SetInt("Level", 1);
+        play.SetActive(false);
+        if(PlayerPrefs.GetInt("Level") < SceneManager.GetActiveScene().buildIndex)
+        {
+            PlayerPrefs.SetInt("Level", SceneManager.GetActiveScene().buildIndex);
+        }
+       
+       
+        
     }
 
+    
  
 }

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -38,7 +39,11 @@ public class Player : MonoBehaviour
     [Header("終點數量")]
     public int clears;
 
-    private int i = 0;
+    [Header("重製按鈕")]
+    public Button Return;
+    public Button Home;
+
+    private int r = 0;
 
     private void Awake()
     {
@@ -166,10 +171,10 @@ public class Player : MonoBehaviour
     /// </summary>
     public void Click()
     {
-        if(click == true && i != 30)
+        if(click == true && r != 30)
         {
             transform.Rotate(0, 0, -3);
-            i++;
+            r++;
             roro++;
         }
         else if(click == true)
@@ -180,7 +185,7 @@ public class Player : MonoBehaviour
         else
         {
             click = false;
-            i = 0;
+            r = 0;
         }
         
     }
@@ -217,10 +222,10 @@ public class Player : MonoBehaviour
         {
             if (click == true)
             {
-                transform.Rotate(0, 0, 3 * i);
+                transform.Rotate(0, 0, 3 * r);
                 click = false;
-                roro = roro - i;
-                i = 0;
+                roro = roro - r;
+                r = 0;
                 aud.PlayOneShot(soundWrong);
             }
             else
