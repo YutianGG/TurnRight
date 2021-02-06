@@ -64,7 +64,7 @@ public class Player : MonoBehaviour
         Touch();
         Click();
         Move();
-        Win();
+        //Win();
     }
 
     /// <summary>
@@ -236,7 +236,7 @@ public class Player : MonoBehaviour
         if(collision.name == "Win")
         {
             w++;
-            
+            Invoke("Win", 1f);
         }        
 
     }
