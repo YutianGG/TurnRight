@@ -199,12 +199,11 @@ public class Player : MonoBehaviour
     {
         if(w == clears && roro % 30 == 0)
         {
-            Invoke("Winer", 0.5f);
+            Invoke("Winer", 0.1f);
         }
     }
     private void Winer()
     {
-        
         gg.GameWIN();
         enabled = false;
     }
