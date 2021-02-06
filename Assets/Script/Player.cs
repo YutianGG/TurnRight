@@ -39,9 +39,7 @@ public class Player : MonoBehaviour
     [Header("終點數量")]
     public int clears;
 
-    [Header("重製按鈕")]
-    public Button Return;
-    public Button Home;
+   
 
     private int r = 0;
 
@@ -230,6 +228,7 @@ public class Player : MonoBehaviour
             }
             else
             {
+                aud.PlayOneShot(soundWrong);
                 offset = reset;
                 gg.move--;
             }

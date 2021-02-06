@@ -9702,8 +9702,6 @@ MonoBehaviour:
   y: 0
   roro: 0
   clears: 2
-  Return: {fileID: 0}
-  Home: {fileID: 0}
 --- !u!50 &9048172604477154398
 Rigidbody2D:
   serializedVersion: 4
@@ -9738,8 +9736,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.40636373}
-  m_Size: {x: 0.2448174, y: 1.1940569}
+  m_Offset: {x: -0.003773092, y: 0.40636373}
+  m_Size: {x: 0.34291804, y: 1.1940569}
   m_Direction: 0
 --- !u!82 &9048172604477154385
 AudioSource:
