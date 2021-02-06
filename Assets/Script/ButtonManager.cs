@@ -14,5 +14,8 @@ public class ButtonManager : MonoBehaviour
     {
         SceneManager.LoadScene("HOME");
     }
-   
+    public void INFOR()
+    {
+        SceneManager.LoadScene("Information");
+    }
 }

@@ -69,15 +69,15 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void GameWIN()
     {
+        if (PlayerPrefs.GetInt("L") <= SceneManager.GetActiveScene().buildIndex)
+        {
+            
+            PlayerPrefs.SetInt("L", SceneManager.GetActiveScene().buildIndex);
+            print(PlayerPrefs.GetInt("L"));
+        }
         win.SetActive(true);
         play.SetActive(false);
-        if(PlayerPrefs.GetInt("Level") < SceneManager.GetActiveScene().buildIndex)
-        {
-            PlayerPrefs.SetInt("Level", SceneManager.GetActiveScene().buildIndex);
-        }
        
-       
-        
     }
 
     

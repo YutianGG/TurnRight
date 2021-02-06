@@ -9,8 +9,8 @@ public class PlayLord : MonoBehaviour
 
     private void Awake()
     {
-        PlayerPrefs.DeleteAll();
-        lv = PlayerPrefs.GetInt("Level");
+       //PlayerPrefs.DeleteAll();
+        lv = PlayerPrefs.GetInt("L");
         print(lv);
     }
     private void Start()
